@@ -195,6 +195,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
@@ -208,6 +210,205 @@
             cursor: pointer;
             z-index: 1001;
             transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu Styles - Centered */
+        .mobile-nav {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 90%;
+            max-width: 400px;
+            max-height: 80vh;
+            background: var(--dark);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 60px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            opacity: 0;
+            visibility: hidden;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: var(--light);
+            font-size: 18px;
+            font-weight: 500;
+            display: block;
+            padding: 15px 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .mobile-nav ul li a:hover {
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--primary);
+            transform: translateX(5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 12px;
+            margin: 8px 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-dropdown-content.active {
+            max-height: 200px;
+        }
+
+        .mobile-dropdown-content a {
+            padding: 12px 20px;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            color: var(--gray-light);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-dropdown-content a i {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .mobile-dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-dropdown-content a:hover {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            padding-left: 25px;
+        }
+
+        .mobile-dropdown-toggle {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mobile-dropdown-toggle i {
+            transition: transform 0.3s ease;
+            font-size: 14px;
+        }
+
+        .mobile-dropdown-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        .mobile-nav .cta-button {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        /* Close button for mobile menu */
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--light);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .mobile-nav-close:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Mobile menu header */
+        .mobile-nav-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-nav-header .logo {
+            font-size: 22px;
+            justify-content: center;
+        }
+
+        .mobile-nav-header .logo-img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .mobile-nav-header h3 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 6, 23, 0.8);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Page Header */
@@ -766,139 +967,6 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Mobile Menu Styles */
-        .mobile-nav {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 280px;
-            height: 100vh;
-            background: var(--dark);
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: right 0.4s ease;
-            padding: 80px 30px 30px;
-            display: flex;
-            flex-direction: column;
-            border-left: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .mobile-nav.active {
-            right: 0;
-        }
-
-        .mobile-nav ul {
-            list-style: none;
-        }
-
-        .mobile-nav ul li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .mobile-nav ul li a {
-            text-decoration: none;
-            color: var(--light);
-            font-size: 18px;
-            font-weight: 500;
-            display: block;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .mobile-nav ul li a:hover {
-            color: var(--primary);
-            padding-left: 10px;
-        }
-
-        .mobile-dropdown-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            background: rgba(30, 41, 59, 0.5);
-            border-radius: 8px;
-            margin-top: 5px;
-        }
-
-        .mobile-dropdown-content.active {
-            max-height: 300px;
-        }
-
-        .mobile-dropdown-content a {
-            padding: 10px 15px;
-            font-size: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-        }
-
-        .mobile-dropdown-content a i {
-            margin-right: 10px;
-            width: 16px;
-            text-align: center;
-        }
-
-        .mobile-dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-dropdown-toggle {
-            cursor: pointer;
-        }
-
-        .mobile-dropdown-toggle i {
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-dropdown-toggle.active i {
-            transform: rotate(180deg);
-        }
-
-        .mobile-nav .cta-button {
-            margin-top: 20px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -929,6 +997,23 @@
         .back-to-top:hover {
             background: var(--primary-dark);
             transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
         /* Responsive Styles */
@@ -1020,6 +1105,29 @@
                 padding: 25px 15px;
             }
         }
+
+        /* Responsive adjustments for mobile menu */
+        @media (max-width: 576px) {
+            .mobile-nav {
+                width: 95%;
+                padding: 50px 20px 20px;
+            }
+            
+            .mobile-nav ul li a {
+                padding: 12px 15px;
+                font-size: 16px;
+            }
+            
+            .mobile-nav-header {
+                padding: 15px 20px;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .mobile-nav {
+                max-height: 90vh;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1045,7 +1153,7 @@
                 <li><a href="./dashboard.html">Dashboard</a></li>
             </ul>
         </nav>
-        <button class="cta-button header-cta">Login</button>
+        <a href="login.html" class="cta-button header-cta">Login</a>
         <div class="mobile-menu" id="mobileMenu">
             <i class="fas fa-bars"></i>
         </div>
@@ -1053,6 +1161,15 @@
 
     <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">
+                <img src="./images/Untitled design.png" alt="STACKLY Logo" class="logo-img">
+                <h3>STACKLY</h3>
+            </a>
+            <button class="mobile-nav-close" id="mobileNavClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
         <ul>
             <li class="mobile-dropdown">
                 <a href="./index.html" class="mobile-dropdown-toggle">Home <i class="fas fa-chevron-down"></i></a>
@@ -1067,7 +1184,7 @@
             <li><a href="./contact.html">Contact</a></li>
             <li><a href="./dashboard.html">Dashboard</a></li>
         </ul>
-        <button class="cta-button">Login</button>
+        <a href="login.html" class="cta-button">Login</a>
     </div>
     <div class="overlay" id="overlay"></div>
 
@@ -1102,7 +1219,7 @@
                     <li><i class="fas fa-check"></i> Content Strategy</li>
                     <li><i class="fas fa-check"></i> Link Building</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- PPC Service -->
@@ -1119,7 +1236,7 @@
                     <li><i class="fas fa-check"></i> A/B Testing</li>
                     <li><i class="fas fa-check"></i> Performance Analytics</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Social Media Service -->
@@ -1136,7 +1253,7 @@
                     <li><i class="fas fa-check"></i> Influencer Partnerships</li>
                     <li><i class="fas fa-check"></i> Performance Reporting</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Content Marketing Service -->
@@ -1153,7 +1270,7 @@
                     <li><i class="fas fa-check"></i> Email Newsletter Creation</li>
                     <li><i class="fas fa-check"></i> Content Performance Analysis</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Email Marketing Service -->
@@ -1170,7 +1287,7 @@
                     <li><i class="fas fa-check"></i> A/B Testing</li>
                     <li><i class="fas fa-check"></i> Performance Analytics</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
 
             <!-- Analytics Service -->
@@ -1187,7 +1304,7 @@
                     <li><i class="fas fa-check"></i> ROI Analysis</li>
                     <li><i class="fas fa-check"></i> Monthly Reporting</li>
                 </ul>
-                <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -1240,7 +1357,7 @@
                     <li><i class="fas fa-times"></i> Content Creation</li>
                     <li><i class="fas fa-times"></i> Email Marketing</li>
                 </ul>
-                <button class="cta-button">Login</button>
+                <a href="login.html" class="cta-button">Login</a>
             </div>
             <div class="pricing-card popular">
                 <h3 class="pricing-name">Professional</h3>
@@ -1253,7 +1370,7 @@
                     <li><i class="fas fa-check"></i> Basic Content Creation</li>
                     <li><i class="fas fa-times"></i> Advanced Analytics</li>
                 </ul>
-                <button class="cta-button">Login</button>
+                <a href="login.html" class="cta-button">Login</a>
             </div>
             <div class="pricing-card">
                 <h3 class="pricing-name">Enterprise</h3>
@@ -1266,7 +1383,7 @@
                     <li><i class="fas fa-check"></i> Premium Content Creation</li>
                     <li><i class="fas fa-check"></i> Advanced Analytics & Reporting</li>
                 </ul>
-                <button class="cta-button">Login</button>
+                <a href="login.html" class="cta-button">Login</a>
             </div>
         </div>
     </section>
@@ -1330,7 +1447,7 @@
     <section class="cta-section">
         <h2>Ready to Transform Your Digital Presence?</h2>
         <p>Contact us today for a free consultation and let's discuss how we can help your business achieve remarkable growth.</p>
-        <button class="cta-button">Get Free Consultation</button>
+        <a href="./contact.html" class="cta-button">Get Free Consultation</a>
     </section>
 
     <!-- Footer -->
@@ -1340,10 +1457,10 @@
                 <h3>About STACKLY</h3>
                 <p>We are a modern digital marketing agency dedicated to helping businesses grow through innovative strategies and measurable results.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="./404.html"><i class="fab fa-facebook-f"></i></a>
+                    <a href="./404.html"><i class="fab fa-twitter"></i></a>
+                    <a href="./404.html"><i class="fab fa-instagram"></i></a>
+                    <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -1359,11 +1476,11 @@
             <div class="footer-column">
                 <h3>Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#">SEO Optimization</a></li>
-                    <li><a href="#">PPC Advertising</a></li>
-                    <li><a href="#">Social Media Marketing</a></li>
-                    <li><a href="#">Content Marketing</a></li>
-                    <li><a href="#">Email Marketing</a></li>
+                    <li><a href="./404.html">SEO Optimization</a></li>
+                    <li><a href="./404.html">PPC Advertising</a></li>
+                    <li><a href="./404.html">Social Media Marketing</a></li>
+                    <li><a href="./404.html">Content Marketing</a></li>
+                    <li><a href="./404.html">Email Marketing</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -1407,21 +1524,19 @@
         // Mobile menu toggle
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
         const overlay = document.getElementById('overlay');
 
-        mobileMenu.addEventListener('click', function() {
+        function toggleMobileMenu() {
             mobileNav.classList.toggle('active');
             overlay.classList.toggle('active');
             mobileMenu.classList.toggle('active');
             document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : 'auto';
-        });
+        }
 
-        overlay.addEventListener('click', function() {
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        mobileMenu.addEventListener('click', toggleMobileMenu);
+        mobileNavClose.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
 
         // Mobile dropdown functionality
         const mobileDropdownToggle = document.querySelector('.mobile-dropdown-toggle');
@@ -1438,10 +1553,7 @@
         mobileLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 if (!this.classList.contains('mobile-dropdown-toggle')) {
-                    mobileNav.classList.remove('active');
-                    overlay.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                    toggleMobileMenu();
                 }
             });
         });
@@ -1511,6 +1623,21 @@
         document.querySelectorAll('.service-card, .process-step, .pricing-card').forEach(el => {
             observer.observe(el);
         });
+
+        // Add hover effect to service cards on mobile
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.classList.add('hover-effect');
+                });
+                
+                card.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.classList.remove('hover-effect');
+                    }, 300);
+                });
+            });
+        }
     </script>
 </body>
 </html>
