@@ -368,34 +368,6 @@
             transform: rotate(90deg);
         }
 
-        /* Mobile menu header */
-        .mobile-nav-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-nav-header .logo {
-            font-size: 22px;
-            justify-content: center;
-        }
-
-        .mobile-nav-header .logo-img {
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .mobile-nav-header h3 {
-            font-size: 20px;
-            margin: 0;
-        }
-
         /* Overlay */
         .overlay {
             position: fixed;
@@ -814,7 +786,7 @@
                     <a href="./index.html">Home <i class="fas fa-chevron-down dropdown-arrow"></i></a>
                     <div class="dropdown-content">
                         <a href="./index.html"><i class="fas fa-home"></i> Home 1</a>
-                        <a href="./404.html"><i class="fas fa-home"></i> Home 2</a>
+                        <a href="./home2.html"><i class="fas fa-home"></i> Home 2</a>
                     </div>
                 </li>
                 <li><a href="./services.html">Services</a></li>
@@ -897,14 +869,14 @@
             </div>
 
             <div class="social-login">
-                <button class="social-button google">
-                    <a href="./404.html"><i class="fab fa-google"></i></a>
-                    Google
-                </button>
-                <button class="social-button facebook">
-                    <a href="./404.html"><i class="fab fa-facebook-f"></i></a>
-                    Facebook
-                </button>
+                <button type="button" class="social-button google" onclick="window.location.href='./404.html'">
+    <i class="fab fa-google"></i> Google
+</button>
+
+<button type="button" class="social-button facebook" onclick="window.location.href='./404.html'">
+    <i class="fab fa-facebook-f"></i> Facebook
+</button>
+
             </div>
 
             <div class="signup-link">

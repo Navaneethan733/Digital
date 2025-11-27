@@ -363,34 +363,6 @@
             transform: rotate(90deg);
         }
 
-        /* Mobile menu header */
-        .mobile-nav-header {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-nav-header .logo {
-            font-size: 22px;
-            justify-content: center;
-        }
-
-        .mobile-nav-header .logo-img {
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .mobile-nav-header h3 {
-            font-size: 20px;
-            margin: 0;
-        }
-
         /* Overlay */
         .overlay {
             position: fixed;
@@ -414,7 +386,7 @@
         /* Page Header */
         .page-header {
             padding: 180px 5% 100px;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./images/pic7.webp) no-repeat center/cover;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -628,6 +600,18 @@
         textarea.form-control {
             resize: vertical;
             min-height: 120px;
+        }
+
+       
+        #service {
+            background-color: #1e293b !important; 
+            color: #fff !important;              
+        }
+
+
+        #service option {
+            background-color: #1e293b; 
+            color: #fff;
         }
 
         .submit-btn {
@@ -1034,7 +1018,7 @@
                     <a href="./index.html">Home <i class="fas fa-chevron-down dropdown-arrow"></i></a>
                     <div class="dropdown-content">
                         <a href="./index.html"><i class="fas fa-home"></i> Home 1</a>
-                        <a href="./404.html"><i class="fas fa-home"></i> Home 2</a>
+                        <a href="./home2.html"><i class="fas fa-home"></i> Home 2</a>
                     </div>
                 </li>
                 <li><a href="./services.html">Services</a></li>
