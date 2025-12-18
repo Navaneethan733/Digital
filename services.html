@@ -33,6 +33,17 @@
             line-height: 1.6;
         }
 
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            position: relative;
+        }
+
         /* Header Styles */
         header {
             position: fixed;
@@ -383,13 +394,31 @@
             visibility: visible;
         }
 
-        /* Page Header */
+        /* UPDATED Page Header */
         .page-header {
             padding: 180px 5% 100px;
             background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./images/pic4.webp) no-repeat center/cover;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-header .container {
+            position: relative;
+            z-index: 2;
         }
 
         .page-header h1 {
@@ -405,6 +434,19 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .page-header h1 span::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            background: rgba(99, 102, 241, 0.2);
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+            border-radius: 4px;
         }
 
         .page-header p {
@@ -450,15 +492,31 @@
             animation-delay: 4s;
         }
 
-        /* Services Section */
+        /* UPDATED Services Section */
         .services {
             padding: 100px 5%;
             background-color: var(--dark);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title h2 {
@@ -474,7 +532,7 @@
             position: absolute;
             width: 70px;
             height: 4px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
@@ -486,6 +544,7 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            font-size: 1.1rem;
         }
 
         .services-grid {
@@ -493,20 +552,24 @@
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
             margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
         }
 
         .service-card {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .service-card::before {
@@ -515,44 +578,85 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transition: all 0.4s ease;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.05));
             z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .service-card:hover::before {
-            height: 100%;
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 22px;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(10px);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            color: white;
-            border-color: transparent;
+            transform: translateY(-15px) scale(1.02) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 41, 59, 0.7);
         }
 
-        .service-card:hover .service-icon {
-            background: white;
-            color: var(--primary);
+        .service-card:hover::before {
+            opacity: 1;
         }
 
-        .service-card:hover h3,
-        .service-card:hover p {
-            color: white;
+        .service-card:hover::after {
+            opacity: 0.6;
         }
 
+        /* UPDATED Service icons */
         .service-icon {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background: rgba(99, 102, 241, 0.1);
-            border-radius: 15px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            font-size: 32px;
+            font-size: 36px;
             color: var(--primary);
             transition: all 0.4s ease;
+            position: relative;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+            transform: translateZ(20px);
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: translateZ(20px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover .service-icon::before {
+            opacity: 1;
         }
 
         .service-card h3 {
@@ -576,17 +680,19 @@
         }
 
         .service-features li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--gray-light);
             display: flex;
             align-items: center;
             transition: all 0.4s ease;
+            padding: 5px 0;
         }
 
         .service-features i {
             color: var(--secondary);
-            margin-right: 10px;
-            font-size: 0.9rem;
+            margin-right: 12px;
+            font-size: 1rem;
+            min-width: 20px;
         }
 
         .service-card:hover .service-features li {
@@ -600,6 +706,10 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
         }
 
         .service-link i {
@@ -608,17 +718,35 @@
         }
 
         .service-link:hover {
-            color: var(--secondary);
+            color: white;
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
         }
 
         .service-link:hover i {
             transform: translateX(5px);
         }
 
-        /* Process Section */
+        /* UPDATED Process Section */
         .process {
             padding: 100px 5%;
-            background-color: var(--darker);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .process-steps {
@@ -627,36 +755,48 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .process-step {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
             position: relative;
+            overflow: hidden;
         }
 
         .process-step:hover {
-            transform: translateY(-10px);
+            transform: translateY(-10px) scale(1.02);
             border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(30, 41, 59, 0.7);
         }
 
         .step-number {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: white;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
         }
 
         .process-step h3 {
@@ -670,10 +810,24 @@
             line-height: 1.6;
         }
 
-        /* Pricing Section */
+        /* UPDATED Pricing Section */
         .pricing {
             padding: 100px 5%;
             background-color: var(--dark);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .pricing-grid {
@@ -682,15 +836,17 @@
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .pricing-card {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -699,6 +855,7 @@
         .pricing-card.popular {
             border-color: var(--primary);
             transform: scale(1.05);
+            border-width: 2px;
         }
 
         .pricing-card.popular::before {
@@ -706,44 +863,51 @@
             position: absolute;
             top: 20px;
             right: -30px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 5px 30px;
+            padding: 8px 35px;
             font-size: 0.8rem;
             font-weight: 600;
             transform: rotate(45deg);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+            letter-spacing: 1px;
         }
 
         .pricing-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px) scale(1.02);
             border-color: var(--primary);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(30, 41, 59, 0.7);
         }
 
         .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
+            transform: scale(1.05) translateY(-15px);
         }
 
         .pricing-name {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             color: var(--light);
+            font-weight: 700;
         }
 
         .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 3.5rem;
+            font-weight: 800;
             margin-bottom: 30px;
             color: var(--light);
+            position: relative;
         }
 
         .pricing-price span {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--gray);
+            font-weight: 500;
         }
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .pricing-features li {
@@ -752,31 +916,74 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .pricing-features i {
             color: var(--secondary);
-            margin-right: 10px;
+            margin-right: 12px;
+            font-size: 1.1rem;
         }
 
-        /* FAQ Section */
+        .pricing-features .fa-times {
+            color: var(--gray);
+            opacity: 0.5;
+        }
+
+        .pricing-card .cta-button {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+        }
+
+        /* UPDATED FAQ Section */
         .faq {
             padding: 100px 5%;
-            background-color: var(--darker);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+        }
+
+        .faq::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .faq-container {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .faq-item {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 10px;
+            border-radius: 15px;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(99, 102, 241, 0.2);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .faq-item.active {
+            border-color: var(--primary);
+            background: rgba(30, 41, 59, 0.7);
         }
 
         .faq-question {
@@ -789,6 +996,7 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .faq-question:hover {
@@ -797,10 +1005,12 @@
 
         .faq-question i {
             transition: all 0.3s ease;
+            color: var(--primary);
         }
 
         .faq-item.active .faq-question i {
             transform: rotate(180deg);
+            color: var(--secondary);
         }
 
         .faq-answer {
@@ -817,44 +1027,137 @@
             max-height: 500px;
         }
 
-        /* CTA Section */
+        /* UPDATED CTA Section */
         .cta-section {
-            padding: 100px 5%;
+            padding: 120px 5%;
             background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(80px);
+            top: -100px;
+            right: -100px;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(60px);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .cta-section .container {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
         .cta-section h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 20px;
-            color: var(--light);
+            background: linear-gradient(135deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .cta-section p {
-            color: var(--gray);
+            color: var(--gray-light);
             max-width: 600px;
             margin: 0 auto 40px;
             line-height: 1.6;
+            font-size: 1.1rem;
         }
 
         .cta-section .cta-button {
             font-size: 1.1rem;
-            padding: 18px 40px;
+            padding: 18px 45px;
+            border-radius: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Footer */
+        .cta-section .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+
+        .cta-section .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* UPDATED Footer */
         footer {
-            background: var(--darker);
+            background: linear-gradient(180deg, var(--darker) 0%, #000 100%);
             color: white;
-            padding: 80px 5% 30px;
+            padding: 100px 5% 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column {
+            background: rgba(30, 41, 59, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.2);
+            background: rgba(30, 41, 59, 0.4);
         }
 
         .footer-column h3 {
@@ -870,7 +1173,7 @@
             position: absolute;
             width: 40px;
             height: 3px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             bottom: 0;
             left: 0;
         }
@@ -908,6 +1211,7 @@
             padding-left: 5px;
         }
 
+        /* UPDATED social icons */
         .social-icons {
             display: flex;
             gap: 15px;
@@ -915,21 +1219,46 @@
         }
 
         .social-icons a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 12px;
+            z-index: -1;
         }
 
         .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
+
+        .social-icons a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-icons a:nth-child(1):hover::before { background: #1877F2; }
+        .social-icons a:nth-child(2):hover::before { background: #1DA1F2; }
+        .social-icons a:nth-child(3):hover::before { background: #E4405F; }
+        .social-icons a:nth-child(4):hover::before { background: #0A66C2; }
 
         .footer-bottom {
             text-align: center;
@@ -939,26 +1268,27 @@
             font-size: 0.9rem;
         }
 
-        /* Back to Top Button */
+        /* UPDATED Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
             background: var(--primary);
             color: white;
-            border-radius: 8px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 99;
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .back-to-top.active {
@@ -968,7 +1298,60 @@
 
         .back-to-top:hover {
             background: var(--primary-dark);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.6);
+        }
+
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+
+        /* NEW ANIMATIONS AND EFFECTS */
+        .card-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .service-card:hover .card-shine {
+            left: 150%;
+        }
+
+        .process-step:hover .card-shine {
+            left: 150%;
+        }
+
+        .pricing-card:hover .card-shine {
+            left: 150%;
+        }
+
+        .faq-item.active .card-shine {
+            left: 150%;
         }
 
         /* Animations */
@@ -988,10 +1371,29 @@
             }
         }
 
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: floatUp 0.6s ease forwards;
+        }
+
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .page-header h1 {
                 font-size: 3rem;
+            }
+            
+            .pricing-card.popular {
+                transform: scale(1.02);
             }
         }
 
@@ -1007,6 +1409,10 @@
             .mobile-menu {
                 display: block;
             }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1015,11 +1421,11 @@
             }
             
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .page-header p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .section-title h2 {
@@ -1030,12 +1436,42 @@
                 grid-template-columns: 1fr;
             }
 
+            .service-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
             .pricing-card.popular {
                 transform: scale(1);
             }
 
             .pricing-card.popular:hover {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
+            }
+
+            .cta-section .container {
+                padding: 40px 25px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .footer-column {
+                padding: 25px 20px;
+            }
+
+            .back-to-top {
+                bottom: 25px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
         }
 
@@ -1048,12 +1484,35 @@
                 font-size: 1.7rem;
             }
 
+            .service-card, .pricing-card, .process-step {
+                padding: 30px 20px;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .pricing-price {
+                font-size: 2.8rem;
+            }
+
+            .cta-section .container {
+                padding: 30px 20px;
+            }
+            
             .cta-section h2 {
                 font-size: 1.8rem;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer-column {
+                padding: 20px 15px;
             }
 
             .back-to-top {
@@ -1061,6 +1520,16 @@
                 right: 20px;
                 width: 45px;
                 height: 45px;
+            }
+
+            .mobile-nav {
+                width: 95%;
+                padding: 50px 20px 20px;
+            }
+            
+            .mobile-nav ul li a {
+                padding: 12px 15px;
+                font-size: 16px;
             }
         }
 
@@ -1076,22 +1545,10 @@
             .service-card, .pricing-card {
                 padding: 25px 15px;
             }
-        }
-
-        /* Responsive adjustments for mobile menu */
-        @media (max-width: 576px) {
-            .mobile-nav {
-                width: 95%;
-                padding: 50px 20px 20px;
-            }
             
-            .mobile-nav ul li a {
-                padding: 12px 15px;
-                font-size: 16px;
-            }
-            
-            .mobile-nav-header {
-                padding: 15px 20px;
+            .pricing-card.popular::before {
+                padding: 6px 25px;
+                font-size: 0.7rem;
             }
         }
 
@@ -1147,7 +1604,7 @@
                 <a href="./index.html" class="mobile-dropdown-toggle">Home <i class="fas fa-chevron-down"></i></a>
                 <div class="mobile-dropdown-content">
                     <a href="./index.html"><i class="fas fa-home"></i> Home 1</a>
-                    <a href="./index.html"><i class="fas fa-home"></i> Home 2</a>
+                    <a href="./home2.html"><i class="fas fa-home"></i> Home 2</a>
                 </div>
             </li>
             <li><a href="./services.html">Services</a></li>
@@ -1162,8 +1619,10 @@
 
     <!-- Page Header -->
     <section class="page-header">
-        <h1>Our <span>Services</span></h1>
-        <p>Comprehensive digital marketing solutions designed to drive growth, increase visibility, and deliver measurable results for your business.</p>
+        <div class="container">
+            <h1>Our <span>Services</span></h1>
+            <p>Comprehensive digital marketing solutions designed to drive growth, increase visibility, and deliver measurable results for your business.</p>
+        </div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
         <div class="floating-element"></div>
@@ -1171,245 +1630,271 @@
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <div class="section-title">
-            <h2>What We Offer</h2>
-            <p>We provide a full suite of digital marketing services to help your business thrive in the competitive online landscape.</p>
-        </div>
-
-        <div class="services-grid">
-            <!-- SEO Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3>SEO Optimization</h3>
-                <p>Improve your search engine rankings and drive organic traffic with our comprehensive SEO strategies.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Keyword Research & Analysis</li>
-                    <li><i class="fas fa-check"></i> On-Page Optimization</li>
-                    <li><i class="fas fa-check"></i> Technical SEO Audit</li>
-                    <li><i class="fas fa-check"></i> Content Strategy</li>
-                    <li><i class="fas fa-check"></i> Link Building</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        <div class="container">
+            <div class="section-title">
+                <h2>What We Offer</h2>
+                <p>We provide a full suite of digital marketing services to help your business thrive in the competitive online landscape.</p>
             </div>
 
-            <!-- PPC Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-ad"></i>
+            <div class="services-grid">
+                <!-- SEO Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Improve your search engine rankings and drive organic traffic with our comprehensive SEO strategies.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Keyword Research & Analysis</li>
+                        <li><i class="fas fa-check"></i> On-Page Optimization</li>
+                        <li><i class="fas fa-check"></i> Technical SEO Audit</li>
+                        <li><i class="fas fa-check"></i> Content Strategy</li>
+                        <li><i class="fas fa-check"></i> Link Building</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <h3>PPC Advertising</h3>
-                <p>Maximize your ROI with targeted pay-per-click campaigns that reach your ideal customers.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Google Ads Management</li>
-                    <li><i class="fas fa-check"></i> Social Media Advertising</li>
-                    <li><i class="fas fa-check"></i> Conversion Rate Optimization</li>
-                    <li><i class="fas fa-check"></i> A/B Testing</li>
-                    <li><i class="fas fa-check"></i> Performance Analytics</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
 
-            <!-- Social Media Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-share-alt"></i>
+                <!-- PPC Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3>PPC Advertising</h3>
+                    <p>Maximize your ROI with targeted pay-per-click campaigns that reach your ideal customers.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Google Ads Management</li>
+                        <li><i class="fas fa-check"></i> Social Media Advertising</li>
+                        <li><i class="fas fa-check"></i> Conversion Rate Optimization</li>
+                        <li><i class="fas fa-check"></i> A/B Testing</li>
+                        <li><i class="fas fa-check"></i> Performance Analytics</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <h3>Social Media Marketing</h3>
-                <p>Build brand awareness and engage with your audience across all major social platforms.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Content Strategy & Creation</li>
-                    <li><i class="fas fa-check"></i> Community Management</li>
-                    <li><i class="fas fa-check"></i> Social Media Advertising</li>
-                    <li><i class="fas fa-check"></i> Influencer Partnerships</li>
-                    <li><i class="fas fa-check"></i> Performance Reporting</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
 
-            <!-- Content Marketing Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-pencil-alt"></i>
+                <!-- Social Media Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3>Social Media Marketing</h3>
+                    <p>Build brand awareness and engage with your audience across all major social platforms.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Content Strategy & Creation</li>
+                        <li><i class="fas fa-check"></i> Community Management</li>
+                        <li><i class="fas fa-check"></i> Social Media Advertising</li>
+                        <li><i class="fas fa-check"></i> Influencer Partnerships</li>
+                        <li><i class="fas fa-check"></i> Performance Reporting</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <h3>Content Marketing</h3>
-                <p>Create compelling content that builds trust, authority, and drives conversions.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Content Strategy Development</li>
-                    <li><i class="fas fa-check"></i> Blog Writing & Management</li>
-                    <li><i class="fas fa-check"></i> Video Content Production</li>
-                    <li><i class="fas fa-check"></i> Email Newsletter Creation</li>
-                    <li><i class="fas fa-check"></i> Content Performance Analysis</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
 
-            <!-- Email Marketing Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-envelope-open-text"></i>
+                <!-- Content Marketing Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-pencil-alt"></i>
+                    </div>
+                    <h3>Content Marketing</h3>
+                    <p>Create compelling content that builds trust, authority, and drives conversions.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Content Strategy Development</li>
+                        <li><i class="fas fa-check"></i> Blog Writing & Management</li>
+                        <li><i class="fas fa-check"></i> Video Content Production</li>
+                        <li><i class="fas fa-check"></i> Email Newsletter Creation</li>
+                        <li><i class="fas fa-check"></i> Content Performance Analysis</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <h3>Email Marketing</h3>
-                <p>Nurture leads and retain customers with personalized email campaigns that deliver results.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Email Strategy Development</li>
-                    <li><i class="fas fa-check"></i> List Segmentation</li>
-                    <li><i class="fas fa-check"></i> Automated Campaigns</li>
-                    <li><i class="fas fa-check"></i> A/B Testing</li>
-                    <li><i class="fas fa-check"></i> Performance Analytics</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-            </div>
 
-            <!-- Analytics Service -->
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-chart-bar"></i>
+                <!-- Email Marketing Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <h3>Email Marketing</h3>
+                    <p>Nurture leads and retain customers with personalized email campaigns that deliver results.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Email Strategy Development</li>
+                        <li><i class="fas fa-check"></i> List Segmentation</li>
+                        <li><i class="fas fa-check"></i> Automated Campaigns</li>
+                        <li><i class="fas fa-check"></i> A/B Testing</li>
+                        <li><i class="fas fa-check"></i> Performance Analytics</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                 </div>
-                <h3>Analytics & Reporting</h3>
-                <p>Make data-driven decisions with comprehensive analytics and detailed performance reports.</p>
-                <ul class="service-features">
-                    <li><i class="fas fa-check"></i> Google Analytics Setup</li>
-                    <li><i class="fas fa-check"></i> Custom Dashboard Creation</li>
-                    <li><i class="fas fa-check"></i> Performance Tracking</li>
-                    <li><i class="fas fa-check"></i> ROI Analysis</li>
-                    <li><i class="fas fa-check"></i> Monthly Reporting</li>
-                </ul>
-                <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+
+                <!-- Analytics Service -->
+                <div class="service-card">
+                    <div class="card-shine"></div>
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Analytics & Reporting</h3>
+                    <p>Make data-driven decisions with comprehensive analytics and detailed performance reports.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Google Analytics Setup</li>
+                        <li><i class="fas fa-check"></i> Custom Dashboard Creation</li>
+                        <li><i class="fas fa-check"></i> Performance Tracking</li>
+                        <li><i class="fas fa-check"></i> ROI Analysis</li>
+                        <li><i class="fas fa-check"></i> Monthly Reporting</li>
+                    </ul>
+                    <a href="./404.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section class="process">
-        <div class="section-title">
-            <h2>Our Process</h2>
-            <p>We follow a proven methodology to ensure your digital marketing success.</p>
-        </div>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3>Discovery & Analysis</h3>
-                <p>We conduct in-depth analysis of your business, competitors, and target audience to identify opportunities.</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Process</h2>
+                <p>We follow a proven methodology to ensure your digital marketing success.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3>Strategy Development</h3>
-                <p>We create a customized marketing strategy tailored to your business goals and target market.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3>Implementation</h3>
-                <p>Our team executes the strategy with precision, using the latest tools and techniques.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3>Optimization & Reporting</h3>
-                <p>We continuously monitor performance and provide detailed reports on progress and ROI.</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Analysis</h3>
+                    <p>We conduct in-depth analysis of your business, competitors, and target audience to identify opportunities.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">2</div>
+                    <h3>Strategy Development</h3>
+                    <p>We create a customized marketing strategy tailored to your business goals and target market.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>Our team executes the strategy with precision, using the latest tools and techniques.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">4</div>
+                    <h3>Optimization & Reporting</h3>
+                    <p>We continuously monitor performance and provide detailed reports on progress and ROI.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
     <section class="pricing">
-        <div class="section-title">
-            <h2>Pricing Plans</h2>
-            <p>Choose the plan that best fits your business needs and budget.</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <h3 class="pricing-name">Starter</h3>
-                <div class="pricing-price">$999<span>/month</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Basic SEO Optimization</li>
-                    <li><i class="fas fa-check"></i> Social Media Management (2 platforms)</li>
-                    <li><i class="fas fa-check"></i> Monthly Performance Report</li>
-                    <li><i class="fas fa-times"></i> PPC Management</li>
-                    <li><i class="fas fa-times"></i> Content Creation</li>
-                    <li><i class="fas fa-times"></i> Email Marketing</li>
-                </ul>
-                <a href="login.html" class="cta-button">Buy</a>
+        <div class="container">
+            <div class="section-title">
+                <h2>Pricing Plans</h2>
+                <p>Choose the plan that best fits your business needs and budget.</p>
             </div>
-            <div class="pricing-card popular">
-                <h3 class="pricing-name">Professional</h3>
-                <div class="pricing-price">$1,999<span>/month</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Everything in Starter</li>
-                    <li><i class="fas fa-check"></i> Advanced SEO Strategy</li>
-                    <li><i class="fas fa-check"></i> Social Media Management (4 platforms)</li>
-                    <li><i class="fas fa-check"></i> PPC Campaign Management</li>
-                    <li><i class="fas fa-check"></i> Basic Content Creation</li>
-                    <li><i class="fas fa-times"></i> Advanced Analytics</li>
-                </ul>
-                <a href="login.html" class="cta-button">Buy</a>
-            </div>
-            <div class="pricing-card">
-                <h3 class="pricing-name">Enterprise</h3>
-                <div class="pricing-price">$3,499<span>/month</span></div>
-                <ul class="pricing-features">
-                    <li><i class="fas fa-check"></i> Everything in Professional</li>
-                    <li><i class="fas fa-check"></i> Social Media Management (4 platforms)</li>
-                    <li><i class="fas fa-check"></i> Comprehensive SEO Strategy</li>
-                    <li><i class="fas fa-check"></i> Full Social Media Management</li>
-                    <li><i class="fas fa-check"></i> Premium Content Creation</li>
-                    <li><i class="fas fa-check"></i> Advanced Analytics & Reporting</li>
-                </ul>
-                <a href="login.html" class="cta-button">Buy</a>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="card-shine"></div>
+                    <h3 class="pricing-name">Starter</h3>
+                    <div class="pricing-price">$999<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Basic SEO Optimization</li>
+                        <li><i class="fas fa-check"></i> Social Media Management (2 platforms)</li>
+                        <li><i class="fas fa-check"></i> Monthly Performance Report</li>
+                        <li><i class="fas fa-times"></i> PPC Management</li>
+                        <li><i class="fas fa-times"></i> Content Creation</li>
+                        <li><i class="fas fa-times"></i> Email Marketing</li>
+                    </ul>
+                    <a href="login.html" class="cta-button">Buy Now</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="card-shine"></div>
+                    <h3 class="pricing-name">Professional</h3>
+                    <div class="pricing-price">$1,999<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Starter</li>
+                        <li><i class="fas fa-check"></i> Advanced SEO Strategy</li>
+                        <li><i class="fas fa-check"></i> Social Media Management (4 platforms)</li>
+                        <li><i class="fas fa-check"></i> PPC Campaign Management</li>
+                        <li><i class="fas fa-check"></i> Basic Content Creation</li>
+                        <li><i class="fas fa-times"></i> Advanced Analytics</li>
+                    </ul>
+                    <a href="login.html" class="cta-button">Buy Now</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-shine"></div>
+                    <h3 class="pricing-name">Enterprise</h3>
+                    <div class="pricing-price">$3,499<span>/month</span></div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Professional</li>
+                        <li><i class="fas fa-check"></i> Comprehensive SEO Strategy</li>
+                        <li><i class="fas fa-check"></i> Full Social Media Management</li>
+                        <li><i class="fas fa-check"></i> Premium Content Creation</li>
+                        <li><i class="fas fa-check"></i> Email Marketing Campaigns</li>
+                        <li><i class="fas fa-check"></i> Advanced Analytics & Reporting</li>
+                    </ul>
+                    <a href="login.html" class="cta-button">Buy Now</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
     <section class="faq">
-        <div class="section-title">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our services and processes.</p>
-        </div>
-        <div class="faq-container">
-            <div class="faq-item">
-                <div class="faq-question">
-                    How long does it take to see results from SEO?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    SEO is a long-term strategy, and results typically begin to appear within 3-6 months. However, some improvements like technical fixes can show results sooner. The timeline depends on factors like website age, competition, and the current state of your SEO.
-                </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions about our services and processes.</p>
             </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you work with businesses in any industry?
-                    <i class="fas fa-chevron-down"></i>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="card-shine"></div>
+                    <div class="faq-question">
+                        How long does it take to see results from SEO?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        SEO is a long-term strategy, and results typically begin to appear within 3-6 months. However, some improvements like technical fixes can show results sooner. The timeline depends on factors like website age, competition, and the current state of your SEO.
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    Yes, we have experience working with businesses across various industries including e-commerce, healthcare, finance, technology, and more. Our strategies are tailored to the specific needs and regulations of each industry.
+                <div class="faq-item">
+                    <div class="card-shine"></div>
+                    <div class="faq-question">
+                        Do you work with businesses in any industry?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we have experience working with businesses across various industries including e-commerce, healthcare, finance, technology, and more. Our strategies are tailored to the specific needs and regulations of each industry.
+                    </div>
                 </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    What's included in your monthly reports?
-                    <i class="fas fa-chevron-down"></i>
+                <div class="faq-item">
+                    <div class="card-shine"></div>
+                    <div class="faq-question">
+                        What's included in your monthly reports?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Our monthly reports include key performance indicators, traffic metrics, conversion rates, campaign progress, and recommendations for ongoing improvements. We provide clear, actionable insights to help you understand your ROI.
+                    </div>
                 </div>
-                <div class="faq-answer">
-                    Our monthly reports include key performance indicators, traffic metrics, conversion rates, campaign progress, and recommendations for ongoing improvements. We provide clear, actionable insights to help you understand your ROI.
+                <div class="faq-item">
+                    <div class="card-shine"></div>
+                    <div class="faq-question">
+                        Do you offer contract flexibility?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we offer flexible contract terms. Our standard agreement is 6 months, but we can adjust based on your business needs. We believe in delivering value, and our goal is to build long-term partnerships with our clients.
+                    </div>
                 </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Do you offer contract flexibility?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    Yes, we offer flexible contract terms. Our standard agreement is 6 months, but we can adjust based on your business needs. We believe in delivering value, and our goal is to build long-term partnerships with our clients.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Can I cancel my service at any time?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    We require a 30-day notice for cancellation. This allows us to properly wrap up campaigns and provide you with final reports and recommendations. We're committed to ensuring a smooth transition whether you're pausing or ending services.
+                <div class="faq-item">
+                    <div class="card-shine"></div>
+                    <div class="faq-question">
+                        Can I cancel my service at any time?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        We require a 30-day notice for cancellation. This allows us to properly wrap up campaigns and provide you with final reports and recommendations. We're committed to ensuring a smooth transition whether you're pausing or ending services.
+                    </div>
                 </div>
             </div>
         </div>
@@ -1417,55 +1902,59 @@
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Ready to Transform Your Digital Presence?</h2>
-        <p>Contact us today for a free consultation and let's discuss how we can help your business achieve remarkable growth.</p>
-        <a href="./contact.html" class="cta-button">Get Free Consultation</a>
+        <div class="container">
+            <h2>Ready to Transform Your Digital Presence?</h2>
+            <p>Contact us today for a free consultation and let's discuss how we can help your business achieve remarkable growth.</p>
+            <a href="./contact.html" class="cta-button">Get Free Consultation</a>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>About STACKLY</h3>
-                <p>We are a modern digital marketing agency dedicated to helping businesses grow through innovative strategies and measurable results.</p>
-                <div class="social-icons">
-                    <a href="./404.html"><i class="fab fa-facebook-f"></i></a>
-                    <a href="./404.html"><i class="fab fa-twitter"></i></a>
-                    <a href="./404.html"><i class="fab fa-instagram"></i></a>
-                    <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About STACKLY</h3>
+                    <p>We are a modern digital marketing agency dedicated to helping businesses grow through innovative strategies and measurable results.</p>
+                    <div class="social-icons">
+                        <a href="./404.html"><i class="fab fa-facebook-f"></i></a>
+                        <a href="./404.html"><i class="fab fa-twitter"></i></a>
+                        <a href="./404.html"><i class="fab fa-instagram"></i></a>
+                        <a href="./404.html"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-chevron-right"></i><a href="./index.html">Home</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./services.html">Services</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./projects.html">Projects</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./about.html">About</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-search"></i><a href="./404.html">SEO Optimization</a></li>
+                        <li><i class="fas fa-ad"></i><a href="./404.html">PPC Advertising</a></li>
+                        <li><i class="fas fa-share-alt"></i><a href="./404.html">Social Media Marketing</a></li>
+                        <li><i class="fas fa-pencil-alt"></i><a href="./404.html">Content Marketing</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="./404.html">Email Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="#">Salem, Tamil Nadu, India</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@stackly.com">info@stackly.com</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./services.html">Services</a></li>
-                    <li><a href="./projects.html">Projects</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2023 STACKLY Marketing Agency. All Rights Reserved.</p>
             </div>
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="./404.html">SEO Optimization</a></li>
-                    <li><a href="./404.html">PPC Advertising</a></li>
-                    <li><a href="./404.html">Social Media Marketing</a></li>
-                    <li><a href="./404.html">Content Marketing</a></li>
-                    <li><a href="./404.html">Email Marketing</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> <a href="#">456 Digital Avenue, Tech City</a></li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">+1 (555) 123-4567</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@stackly.com">info@stackly.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 STACKLY Marketing Agency. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1585,15 +2074,21 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.service-card, .process-step, .pricing-card').forEach(el => {
+        document.querySelectorAll('.service-card, .process-step, .pricing-card, .footer-column, .faq-item').forEach(el => {
             observer.observe(el);
+        });
+
+        // Add card shine effect to all cards
+        document.querySelectorAll('.service-card, .process-step, .pricing-card, .faq-item').forEach(card => {
+            const shine = document.createElement('div');
+            shine.className = 'card-shine';
+            card.appendChild(shine);
         });
 
         // Add hover effect to service cards on mobile

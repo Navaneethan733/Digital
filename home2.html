@@ -33,6 +33,17 @@
             line-height: 1.6;
         }
 
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            position: relative;
+        }
+
         /* Header Styles */
         header {
             position: fixed;
@@ -383,7 +394,7 @@
             visibility: visible;
         }
 
-        /* Hero Section - Alternative Design */
+        /* UPDATED Hero Section - Alternative Design */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -394,33 +405,59 @@
             overflow: hidden;
         }
 
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
         .hero-content {
             max-width: 600px;
             z-index: 2;
+            position: relative;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(99, 102, 241, 0.15);
             color: var(--primary);
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            margin-bottom: 25px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-badge:hover {
+            background: rgba(99, 102, 241, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
         }
 
         .hero-badge i {
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 1rem;
+            color: var(--secondary);
         }
 
         .hero h1 {
             font-size: 3.5rem;
             line-height: 1.2;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 span {
@@ -428,6 +465,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            display: inline-block;
         }
 
         .hero h1 span::after {
@@ -445,7 +483,7 @@
         .hero p {
             font-size: 1.2rem;
             color: var(--gray-light);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             line-height: 1.6;
         }
 
@@ -453,32 +491,52 @@
             display: flex;
             gap: 30px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .stat {
             text-align: center;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+            min-width: 120px;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--primary);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
         }
 
         .stat-label {
             font-size: 0.9rem;
-            color: var(--gray);
+            color: var(--gray-light);
+            font-weight: 500;
         }
 
         .hero-buttons {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .hero-buttons .cta-button {
             padding: 15px 30px;
             font-size: 1rem;
+            border-radius: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .secondary-button {
@@ -486,16 +544,20 @@
             color: var(--light);
             border: 2px solid var(--gray);
             padding: 15px 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
         }
 
         .secondary-button:hover {
             border-color: var(--primary);
             color: var(--primary);
             transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
         }
 
         .hero-image {
@@ -522,15 +584,31 @@
             z-index: 0;
         }
 
-        /* Features Section */
+        /* UPDATED Features Section */
         .features {
             padding: 100px 5%;
             background-color: var(--dark);
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title h2 {
@@ -546,7 +624,7 @@
             position: absolute;
             width: 70px;
             height: 4px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
@@ -558,24 +636,29 @@
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
+            font-size: 1.1rem;
         }
 
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-card {
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
 
         .feature-card::before {
@@ -584,44 +667,85 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            transition: all 0.4s ease;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.05));
             z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .feature-card:hover::before {
-            height: 100%;
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            border-radius: 22px;
+            z-index: -2;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(10px);
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            color: white;
-            border-color: transparent;
+            transform: translateY(-15px) scale(1.02) rotateX(2deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 41, 59, 0.7);
         }
 
-        .feature-card:hover .feature-icon {
-            background: white;
-            color: var(--primary);
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
-        .feature-card:hover h3,
-        .feature-card:hover p {
-            color: white;
+        .feature-card:hover::after {
+            opacity: 0.6;
         }
 
+        /* UPDATED Feature icons */
         .feature-icon {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             background: rgba(99, 102, 241, 0.1);
             border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 25px;
-            font-size: 32px;
+            font-size: 36px;
             color: var(--primary);
             transition: all 0.4s ease;
+            position: relative;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+            transform: translateZ(20px);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            transform: translateZ(20px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon::before {
+            opacity: 1;
         }
 
         .feature-card h3 {
@@ -637,10 +761,25 @@
             transition: all 0.4s ease;
         }
 
-        /* Process Section */
+        /* UPDATED Process Section */
         .process {
             padding: 100px 5%;
-            background-color: var(--darker);
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .process-steps {
@@ -649,6 +788,8 @@
             max-width: 1000px;
             margin: 0 auto;
             position: relative;
+            flex-wrap: wrap;
+            gap: 40px;
         }
 
         .process-steps::before {
@@ -660,6 +801,7 @@
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             opacity: 0.3;
+            z-index: 1;
         }
 
         .process-step {
@@ -667,6 +809,19 @@
             position: relative;
             z-index: 2;
             flex: 1;
+            min-width: 200px;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .step-number {
@@ -684,12 +839,19 @@
             position: relative;
             z-index: 3;
             box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
         }
 
         .process-step h3 {
             font-size: 1.3rem;
             margin-bottom: 15px;
             color: var(--light);
+            font-weight: 600;
         }
 
         .process-step p {
@@ -699,16 +861,35 @@
             margin: 0 auto;
         }
 
-        /* Testimonials Section */
+        /* UPDATED Testimonials Section */
         .testimonials {
             padding: 100px 5%;
             background-color: var(--dark);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
+            pointer-events: none;
         }
 
         .testimonial-container {
             max-width: 1000px;
             margin: 0 auto;
             position: relative;
+            padding: 20px;
+            border-radius: 25px;
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
         }
 
         .testimonial-slider {
@@ -722,17 +903,20 @@
         .testimonial-card {
             min-width: 300px;
             background: rgba(30, 41, 59, 0.5);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(99, 102, 241, 0.3);
         }
 
         .testimonial-content {
@@ -740,6 +924,7 @@
             color: var(--gray-light);
             font-style: italic;
             line-height: 1.6;
+            font-size: 1.05rem;
         }
 
         .testimonial-author {
@@ -751,19 +936,21 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
         }
 
         .author-info h4 {
             font-size: 1.1rem;
             margin-bottom: 5px;
             color: var(--light);
+            font-weight: 600;
         }
 
         .author-info p {
@@ -786,17 +973,19 @@
             opacity: 0.3;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .slider-dot.active {
             background: var(--primary);
             opacity: 1;
             transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
         }
 
-        /* CTA Section */
+        /* UPDATED CTA Section */
         .cta-section {
-            padding: 100px 5%;
+            padding: 120px 5%;
             background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
             text-align: center;
             position: relative;
@@ -829,43 +1018,104 @@
             left: -50px;
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--light);
+        .cta-section .container {
+            max-width: 800px;
             position: relative;
             z-index: 2;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         .cta-section p {
-            color: var(--gray);
+            color: var(--gray-light);
             max-width: 600px;
             margin: 0 auto 40px;
             line-height: 1.6;
+            font-size: 1.1rem;
             position: relative;
             z-index: 2;
         }
 
         .cta-section .cta-button {
             font-size: 1.1rem;
-            padding: 18px 40px;
+            padding: 18px 45px;
+            border-radius: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
             position: relative;
-            z-index: 2;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Footer */
+        .cta-section .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+
+        .cta-section .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* UPDATED Footer */
         footer {
-            background: var(--darker);
+            background: linear-gradient(180deg, var(--darker) 0%, #000 100%);
             color: white;
-            padding: 80px 5% 30px;
+            padding: 100px 5% 40px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column {
+            background: rgba(30, 41, 59, 0.3);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-column:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.2);
+            background: rgba(30, 41, 59, 0.4);
         }
 
         .footer-column h3 {
@@ -881,7 +1131,7 @@
             position: absolute;
             width: 40px;
             height: 3px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             bottom: 0;
             left: 0;
         }
@@ -919,6 +1169,7 @@
             padding-left: 5px;
         }
 
+        /* UPDATED social icons */
         .social-icons {
             display: flex;
             gap: 15px;
@@ -926,21 +1177,46 @@
         }
 
         .social-icons a {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 12px;
+            z-index: -1;
         }
 
         .social-icons a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
         }
+
+        .social-icons a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-icons a:nth-child(1):hover::before { background: #1877F2; }
+        .social-icons a:nth-child(2):hover::before { background: #1DA1F2; }
+        .social-icons a:nth-child(3):hover::before { background: #E4405F; }
+        .social-icons a:nth-child(4):hover::before { background: #0A66C2; }
 
         .footer-bottom {
             text-align: center;
@@ -950,26 +1226,27 @@
             font-size: 0.9rem;
         }
 
-        /* Back to Top Button */
+        /* UPDATED Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
+            bottom: 40px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
             background: var(--primary);
             color: white;
-            border-radius: 8px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 22px;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 99;
-            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .back-to-top.active {
@@ -979,7 +1256,56 @@
 
         .back-to-top:hover {
             background: var(--primary-dark);
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.6);
+        }
+
+        .back-to-top::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-to-top:hover::before {
+            opacity: 1;
+        }
+
+        /* NEW ANIMATIONS AND EFFECTS */
+        .card-shine {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: left 0.6s ease;
+            pointer-events: none;
+        }
+
+        .feature-card:hover .card-shine {
+            left: 150%;
+        }
+
+        .testimonial-card:hover .card-shine {
+            left: 150%;
+        }
+
+        .process-step:hover .card-shine {
+            left: 150%;
         }
 
         /* Animations */
@@ -999,15 +1325,25 @@
             }
         }
 
+        @keyframes floatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: floatUp 0.6s ease forwards;
+        }
+
         /* Responsive Styles */
         @media (max-width: 1200px) {
             .hero h1 {
                 font-size: 3rem;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-                gap: 40px;
             }
             
             .process-steps::before {
@@ -1063,6 +1399,12 @@
                 padding: 30px 20px;
             }
 
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+
             .testimonial-slider {
                 overflow-x: auto;
                 scroll-snap-type: x mandatory;
@@ -1070,6 +1412,26 @@
 
             .testimonial-card {
                 scroll-snap-align: start;
+            }
+
+            .cta-section .container {
+                padding: 40px 25px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .footer-column {
+                padding: 25px 20px;
+            }
+
+            .back-to-top {
+                bottom: 25px;
+                right: 25px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
         }
 
@@ -1093,16 +1455,49 @@
                 max-width: 280px;
             }
 
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat {
+                width: 100%;
+                max-width: 200px;
+            }
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
+            .feature-card {
+                padding: 25px 15px;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .process-steps {
+                flex-direction: column;
+            }
+
+            .cta-section .container {
+                padding: 30px 20px;
+            }
+            
             .cta-section h2 {
                 font-size: 1.8rem;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .footer-column {
+                padding: 20px 15px;
             }
 
             .back-to-top {
@@ -1110,6 +1505,16 @@
                 right: 20px;
                 width: 45px;
                 height: 45px;
+            }
+
+            .mobile-nav {
+                width: 95%;
+                padding: 50px 20px 20px;
+            }
+            
+            .mobile-nav ul li a {
+                padding: 12px 15px;
+                font-size: 16px;
             }
         }
 
@@ -1128,23 +1533,7 @@
 
             .testimonial-card {
                 min-width: 250px;
-            }
-        }
-
-        /* Responsive adjustments for mobile menu */
-        @media (max-width: 576px) {
-            .mobile-nav {
-                width: 95%;
-                padding: 50px 20px 20px;
-            }
-            
-            .mobile-nav ul li a {
-                padding: 12px 15px;
-                font-size: 16px;
-            }
-            
-            .mobile-nav-header {
-                padding: 15px 20px;
+                padding: 25px;
             }
         }
 
@@ -1168,6 +1557,7 @@
                     <a href="./index.html">Home <i class="fas fa-chevron-down dropdown-arrow"></i></a>
                     <div class="dropdown-content">
                         <a href="./index.html"><i class="fas fa-home"></i> Home 1</a>
+                        <a href="./home2.html"><i class="fas fa-home"></i> Home 2</a>
                     </div>
                 </li>
                 <li><a href="./services.html">Services</a></li>
@@ -1214,32 +1604,34 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-rocket"></i>
-                Premium Digital Marketing Solutions
-            </div>
-            <h1>Transform Your <span>Digital Presence</span> With Data-Driven Strategies</h1>
-            <p>We help businesses of all sizes achieve remarkable growth through innovative digital marketing strategies, cutting-edge technology, and measurable results.</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Client Satisfaction</div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i>
+                    Premium Digital Marketing Solutions
                 </div>
-                <div class="stat">
-                    <div class="stat-number">245+</div>
-                    <div class="stat-label">Projects Completed</div>
+                <h1>Transform Your <span>Digital Presence</span> With Data-Driven Strategies</h1>
+                <p>We help businesses of all sizes achieve remarkable growth through innovative digital marketing strategies, cutting-edge technology, and measurable results.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">245+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Industries Served</div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">15+</div>
-                    <div class="stat-label">Industries Served</div>
+                
+                <div class="hero-buttons">
+                    <a href="./contact.html" class="cta-button">Start Your Journey</a>
+                    <a href="./projects.html" class="secondary-button">View Our Work</a>
                 </div>
-            </div>
-            
-            <div class="hero-buttons">
-                <a href="./contact.html" class="cta-button">Start Your Journey</a>
-                <a href="./projects.html" class="secondary-button">View Our Work</a>
             </div>
         </div>
         
@@ -1274,169 +1666,189 @@
 
     <!-- Features Section -->
     <section class="features">
-        <div class="section-title">
-            <h2>Why Choose STACKLY</h2>
-            <p>We deliver exceptional results through our proven approach and cutting-edge strategies.</p>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>Data-Driven Approach</h3>
-                <p>We base all our strategies on comprehensive data analysis to ensure maximum ROI and measurable results.</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose STACKLY</h2>
+                <p>We deliver exceptional results through our proven approach and cutting-edge strategies.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-shine"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data-Driven Approach</h3>
+                    <p>We base all our strategies on comprehensive data analysis to ensure maximum ROI and measurable results.</p>
                 </div>
-                <h3>Rapid Implementation</h3>
-                <p>Get your campaigns up and running quickly with our efficient processes and experienced team.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="feature-card">
+                    <div class="card-shine"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Rapid Implementation</h3>
+                    <p>Get your campaigns up and running quickly with our efficient processes and experienced team.</p>
                 </div>
-                <h3>Transparent Reporting</h3>
-                <p>Stay informed with detailed, easy-to-understand reports that show exactly how your campaigns are performing.</p>
+                <div class="feature-card">
+                    <div class="card-shine"></div>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Transparent Reporting</h3>
+                    <p>Stay informed with detailed, easy-to-understand reports that show exactly how your campaigns are performing.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Process Section -->
     <section class="process">
-        <div class="section-title">
-            <h2>Our 4-Step Process</h2>
-            <p>We follow a proven methodology to deliver exceptional results for every client.</p>
-        </div>
-        <div class="process-steps">
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3>Discovery & Analysis</h3>
-                <p>We conduct in-depth analysis of your business, competitors, and target audience.</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Our 4-Step Process</h2>
+                <p>We follow a proven methodology to deliver exceptional results for every client.</p>
             </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3>Strategy Development</h3>
-                <p>We create a customized marketing strategy tailored to your specific goals.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3>Implementation</h3>
-                <p>Our team executes the strategy with precision using the latest tools and techniques.</p>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3>Optimization</h3>
-                <p>We continuously monitor and refine campaigns for maximum performance.</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Analysis</h3>
+                    <p>We conduct in-depth analysis of your business, competitors, and target audience.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">2</div>
+                    <h3>Strategy Development</h3>
+                    <p>We create a customized marketing strategy tailored to your specific goals.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>Our team executes the strategy with precision using the latest tools and techniques.</p>
+                </div>
+                <div class="process-step">
+                    <div class="card-shine"></div>
+                    <div class="step-number">4</div>
+                    <h3>Optimization</h3>
+                    <p>We continuously monitor and refine campaigns for maximum performance.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section class="testimonials">
-        <div class="section-title">
-            <h2>What Our Clients Say</h2>
-            <p>Don't just take our word for it. Here's what our clients have to say about working with us.</p>
-        </div>
-        <div class="testimonial-container">
-            <div class="testimonial-slider" id="testimonialSlider">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "STACKLY transformed our online presence completely. Our website traffic increased by 200% in just 3 months, and we're seeing consistent growth in leads and conversions."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JS</div>
-                        <div class="author-info">
-                            <h4>John Smith</h4>
-                            <p>CEO, TechSolutions Inc.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "The team at STACKLY is exceptional. They took the time to understand our business goals and delivered a comprehensive marketing strategy that exceeded our expectations."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SR</div>
-                        <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Marketing Director, BrandVision</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        "Working with STACKLY has been a game-changer for our e-commerce business. Their PPC campaigns have significantly improved our ROI, and their content strategy has boosted our brand authority."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MD</div>
-                        <div class="author-info">
-                            <h4>Michael Davis</h4>
-                            <p>Founder, StyleHub</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Clients Say</h2>
+                <p>Don't just take our word for it. Here's what our clients have to say about working with us.</p>
             </div>
-            <div class="slider-controls">
-                <div class="slider-dot active" data-index="0"></div>
-                <div class="slider-dot" data-index="1"></div>
-                <div class="slider-dot" data-index="2"></div>
+            <div class="testimonial-container">
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-card">
+                        <div class="card-shine"></div>
+                        <div class="testimonial-content">
+                            "STACKLY transformed our online presence completely. Our website traffic increased by 200% in just 3 months, and we're seeing consistent growth in leads and conversions."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JS</div>
+                            <div class="author-info">
+                                <h4>John Smith</h4>
+                                <p>CEO, TechSolutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="card-shine"></div>
+                        <div class="testimonial-content">
+                            "The team at STACKLY is exceptional. They took the time to understand our business goals and delivered a comprehensive marketing strategy that exceeded our expectations."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SR</div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Marketing Director, BrandVision</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="card-shine"></div>
+                        <div class="testimonial-content">
+                            "Working with STACKLY has been a game-changer for our e-commerce business. Their PPC campaigns have significantly improved our ROI, and their content strategy has boosted our brand authority."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MD</div>
+                            <div class="author-info">
+                                <h4>Michael Davis</h4>
+                                <p>Founder, StyleHub</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
-        <h2>Ready to Transform Your Digital Presence?</h2>
-        <p>Contact us today for a free consultation and let's discuss how we can help your business achieve remarkable growth.</p>
-        <a href="./contact.html" class="cta-button">Get Free Consultation</a>
+        <div class="container">
+            <h2>Ready to Transform Your Digital Presence?</h2>
+            <p>Contact us today for a free consultation and let's discuss how we can help your business achieve remarkable growth.</p>
+            <a href="./contact.html" class="cta-button">Get Free Consultation</a>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>About STACKLY</h3>
-                <p>We are a modern digital marketing agency dedicated to helping businesses grow through innovative strategies and measurable results.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About STACKLY</h3>
+                    <p>We are a modern digital marketing agency dedicated to helping businesses grow through innovative strategies and measurable results.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-chevron-right"></i><a href="./index.html">Home</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./services.html">Services</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./projects.html">Projects</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./about.html">About</a></li>
+                        <li><i class="fas fa-chevron-right"></i><a href="./contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-search"></i><a href="#">SEO Optimization</a></li>
+                        <li><i class="fas fa-ad"></i><a href="#">PPC Advertising</a></li>
+                        <li><i class="fas fa-pencil-alt"></i><a href="#">Content Marketing</a></li>
+                        <li><i class="fas fa-chart-line"></i><a href="#">Social Media Marketing</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="#">Email Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> <a href="#">Salem, Tamil Nadu, India</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+919876543210">+91 9876543210</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@stackly.com">info@stackly.com</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./services.html">Services</a></li>
-                    <li><a href="./projects.html">Projects</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2023 STACKLY Marketing Agency. All Rights Reserved.</p>
             </div>
-            <div class="footer-column">
-                <h3>Services</h3>
-                <ul class="footer-links">
-                    <li><a href="#">SEO Optimization</a></li>
-                    <li><a href="#">PPC Advertising</a></li>
-                    <li><a href="#">Content Marketing</a></li>
-                    <li><a href="#">Social Media Marketing</a></li>
-                    <li><a href="#">Email Marketing</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Contact Us</h3>
-                <ul class="footer-links">
-                    <li><i class="fas fa-map-marker-alt"></i> <a href="#">456 Digital Avenue, Tech City</a></li>
-                    <li><i class="fas fa-phone"></i> <a href="tel:+15551234567">+1 (555) 123-4567</a></li>
-                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@stackly.com">info@stackly.com</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 STACKLY Marketing Agency. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1546,15 +1958,21 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('animate-in');
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.feature-card, .process-step, .testimonial-card').forEach(el => {
+        document.querySelectorAll('.feature-card, .process-step, .testimonial-card, .footer-column, .stat').forEach(el => {
             observer.observe(el);
+        });
+
+        // Add card shine effect to all cards
+        document.querySelectorAll('.feature-card, .testimonial-card, .process-step').forEach(card => {
+            const shine = document.createElement('div');
+            shine.className = 'card-shine';
+            card.appendChild(shine);
         });
 
         // Smooth scrolling for anchor links
